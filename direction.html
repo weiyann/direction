@@ -79,6 +79,7 @@
         if (orianta == 0) {
           return;
         }
+
         console.log(orianta, step);
         switch (orianta) {
           case 1: //上
@@ -86,28 +87,55 @@
               "background-position",
               -85 * ((5 - step) % 4) + "px -384px"
             );
-            player.css("top", "-=5");
+            if (player.css("top") !== "0px") {
+              player.css(
+                "background-position",
+                -85 * ((5 - step) % 4) + "px -384px"
+              );
+              player.css("top", "-=5");
+            }
+
             break;
           case 2: //右
             player.css(
               "background-position",
               -85 * ((5 - step) % 4) + "px -256px"
             );
-            player.css("left", "+=5");
+            if (player.css("left") !== "720px") {
+              player.css(
+                "background-position",
+                -85 * ((5 - step) % 4) + "px -256px"
+              );
+              player.css("left", "+=5");
+            }
+
             break;
           case 3: //下
             player.css(
               "background-position",
               -85 * ((5 - step) % 4) + "px 0px"
             );
-            player.css("top", "+=5");
+            if (player.css("top") !== "480px") {
+              player.css(
+                "background-position",
+                -85 * ((5 - step) % 4) + "px 0px"
+              );
+              player.css("top", "+=5");
+            }
             break;
           case 4: //左
             player.css(
               "background-position",
               -85 * ((5 - step) % 4) + "px -128px"
             );
-            player.css("left", "-=5");
+            if (player.css("left") !== "0px") {
+              player.css(
+                "background-position",
+                -85 * ((5 - step) % 4) + "px -128px"
+              );
+              player.css("left", "-=5");
+            }
+
             break;
         }
         step--;
