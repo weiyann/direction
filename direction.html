@@ -8,160 +8,188 @@
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <style>
-      .container {
-        position: relative;
-        width: 800px;
-        height: 600px;
-        background-color: #f0f8ff;
-        overflow: hidden;
-      }
-      .player {
-        position: absolute;
-        background-image: url("img/player08.png");
-        background-position: 0px 0px;
-        width: 85px;
-        height: 128px;
-        overflow: hidden;
-      }
-      .treasure {
-        position: absolute;
-        background-image: url("img/treasure01.png");
-        background-position: 0px 0px;
-        width: 150px;
-        height: 146px;
-        overflow: hidden;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="container">
       <div class="player"></div>
+      <div class="treasure1"></div>
+      <div class="treasure2"></div>
     </div>
 
     <button onclick="treasureOpen()">打開寶箱</button>
-    <div class="treasure"></div>
-  </body>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script>
-    let player = $(".player");
-    let orianta = 0;
-    let step = 0;
-    let treasure = $(".treasure");
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      let player = $(".player");
+      let orianta = 0;
+      let step = 0;
+      let treasure1 = $(".treasure1");
+      let treasure2 = $(".treasure2");
 
-    let myHandler = function (event) {
-      if (step != 0) {
-        return;
-      }
-      switch (event.keyCode) {
-        case 38: //上
-          orianta = 1;
-          step = 4;
-          break;
-        case 39: //右
-          orianta = 2;
-          step = 4;
+      let myHandler = function (event) {
+        if (step != 0) {
+          return;
+        }
+        switch (event.keyCode) {
+          case 38: //上
+            orianta = 1;
+            step = 4;
+            break;
+          case 39: //右
+            orianta = 2;
+            step = 4;
 
-          break;
-        case 40: //下
-          orianta = 3;
-          step = 4;
+            break;
+          case 40: //下
+            orianta = 3;
+            step = 4;
 
-          break;
-        case 37: //左
-          orianta = 4;
-          step = 4;
+            break;
+          case 37: //左
+            orianta = 4;
+            step = 4;
 
-          break;
-      }
-      console.log(orianta, step, "---");
-    };
+            break;
+        }
+        console.log(orianta, step, "---");
+      };
 
-    $("body").keydown(myHandler);
+      $("body").keydown(myHandler);
 
-    let doMove = function () {
-      setTimeout(doMove, 50);
+      let doMove = function () {
+        setTimeout(doMove, 50);
 
-      // 走完一個方向
-      if (orianta != 0 && step == 0) {
-        orianta = 0;
-        return;
-      }
+        // 走完一個方向
+        if (orianta != 0 && step == 0) {
+          orianta = 0;
+          checkCollision();
 
-      if (orianta == 0) {
-        return;
-      }
+          return;
+        }
 
-      console.log(orianta, step);
-      switch (orianta) {
-        case 1: //上
-          player.css(
-            "background-position",
-            -85 * ((5 - step) % 4) + "px -384px"
-          );
-          if (player.css("top") !== "0px") {
+        if (orianta == 0) {
+          return;
+        }
+
+        console.log(orianta, step);
+        switch (orianta) {
+          case 1: //上
             player.css(
               "background-position",
               -85 * ((5 - step) % 4) + "px -384px"
             );
-            player.css("top", "-=10");
-          }
+            if (player.css("top") !== "0px") {
+              player.css(
+                "background-position",
+                -85 * ((5 - step) % 4) + "px -384px"
+              );
+              player.css("top", "-=10");
+              // checkCollision();
+            }
 
-          break;
-        case 2: //右
-          player.css(
-            "background-position",
-            -85 * ((5 - step) % 4) + "px -256px"
-          );
-          if (player.css("left") !== "720px") {
+            break;
+          case 2: //右
             player.css(
               "background-position",
               -85 * ((5 - step) % 4) + "px -256px"
             );
-            player.css("left", "+=10");
-          }
+            if (player.css("left") !== "720px") {
+              player.css(
+                "background-position",
+                -85 * ((5 - step) % 4) + "px -256px"
+              );
+              player.css("left", "+=10");
+              // checkCollision();
+            }
 
-          break;
-        case 3: //下
-          player.css("background-position", -85 * ((5 - step) % 4) + "px 0px");
-          if (player.css("top") !== "480px") {
+            break;
+          case 3: //下
             player.css(
               "background-position",
               -85 * ((5 - step) % 4) + "px 0px"
             );
-            player.css("top", "+=10");
-          }
-          break;
-        case 4: //左
-          player.css(
-            "background-position",
-            -85 * ((5 - step) % 4) + "px -128px"
-          );
-          if (player.css("left") !== "0px") {
+            if (player.css("top") !== "480px") {
+              player.css(
+                "background-position",
+                -85 * ((5 - step) % 4) + "px 0px"
+              );
+              player.css("top", "+=10");
+              // checkCollision();
+            }
+            break;
+          case 4: //左
             player.css(
               "background-position",
               -85 * ((5 - step) % 4) + "px -128px"
             );
-            player.css("left", "-=10");
-          }
+            if (player.css("left") !== "0px") {
+              player.css(
+                "background-position",
+                -85 * ((5 - step) % 4) + "px -128px"
+              );
+              player.css("left", "-=10");
+              // checkCollision();
+            }
 
-          break;
-      }
-      step--;
-    };
+            break;
+        }
+        step--;
+      };
 
-    doMove();
-    let treasureOpen = function () {
-      console.log("test");
-      for (let i = 0; i < 5; i++) {
-        setTimeout(() => {
-          let currentPosition = parseInt(
-            treasure.css("background-position").split(" ")[0]
-          );
-          treasure.css("background-position", currentPosition - 150 + "px 0");
-        }, i * 100);
-      }
-    };
-  </script>
+      // 檢查碰撞函式
+      let checkCollision = function () {
+        if (isColliding(player, treasure1) || isColliding(player, treasure2)) {
+          treasureOpen1();
+          treasureOpen2();
+        }
+      };
+
+      // 判斷兩個元素是否碰撞的函式
+      let isColliding = function (element1, element2) {
+        let rect1 = element1[0].getBoundingClientRect();
+        let rect2 = element2[0].getBoundingClientRect();
+
+        let horizontalMargin = 20; // 左右調整的邊界值
+        let verticalMargin = 40; // 上下調整的邊界值
+
+        return !(
+          rect1.right - horizontalMargin < rect2.left + horizontalMargin ||
+          rect1.left + horizontalMargin > rect2.right - horizontalMargin ||
+          rect1.bottom - verticalMargin < rect2.top + verticalMargin ||
+          rect1.top + verticalMargin > rect2.bottom - verticalMargin
+        );
+      };
+      doMove();
+
+      // 打開寶箱的函式
+      let treasureOpen1 = function () {
+        for (let i = 0; i < 5; i++) {
+          setTimeout(() => {
+            let currentPosition = parseInt(
+              treasure1.css("background-position").split(" ")[0]
+            );
+            treasure1.css(
+              "background-position",
+              currentPosition - 150 + "px 0"
+            );
+          }, i * 100);
+        }
+      };
+
+      let treasureOpen2 = function () {
+        for (let i = 0; i < 5; i++) {
+          setTimeout(() => {
+            let currentPosition = parseInt(
+              treasure2.css("background-position").split(" ")[0]
+            );
+            treasure2.css(
+              "background-position",
+              currentPosition - 150 + "px 0"
+            );
+          }, i * 100);
+        }
+      };
+    </script>
+  </body>
 </html>

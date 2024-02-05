@@ -1,0 +1,35 @@
+.container {
+  position: relative;
+  width: 800px;
+  height: 600px;
+  background-color: #f0f8ff;
+  overflow: hidden;
+}
+.player {
+  position: absolute;
+  background-image: url("img/player08.png");
+  background-position: 0px 0px;
+  width: 85px;
+  height: 128px;
+  overflow: hidden;
+}
+.treasure1 {
+  position: absolute;
+  background-image: url("img/treasure01.png");
+  background-position: 0px 0px;
+  width: 150px;
+  height: 146px;
+  overflow: hidden;
+  top: 400px;
+  left: 200px;
+}
+.treasure2 {
+  position: absolute;
+  background-image: url("img/treasure01.png");
+  background-position: 0px 0px;
+  width: 150px;
+  height: 146px;
+  overflow: hidden;
+  top: 400px;
+  left: 500px;
+}
