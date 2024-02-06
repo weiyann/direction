@@ -1,6 +1,7 @@
 # HTML 寶箱遊戲
 
 這是一個使用 HTML、CSS 和 JavaScript 構建的簡單的寶箱遊戲。玩家可以使用鍵盤方向鍵控制角色移動，並打開寶箱以獲取獎勵或觸發事件。
+[網站連結](https://weiyann.github.io/direction/)
 
 ## 如何玩遊戲
 
