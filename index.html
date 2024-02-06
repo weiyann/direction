@@ -25,6 +25,9 @@
       <div class="treasure2"></div>
       <div class="bomb"></div>
     </div>
+    <div class="restartButton">
+      <button id="restartButton" class="btn btn-primary">重新開始</button>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -193,7 +196,7 @@
           setTimeout(() => {
             confirm("獲得美味起司");
             player.css("background-image", "url('img/get-cheese.png')");
-            $(".cheese").hide();
+            $(".cheese").removeClass("display-block");
             treasure1.hide();
             treasure2.hide();
           }, 500);
@@ -220,12 +223,39 @@
           setTimeout(() => {
             confirm("你被炸死了");
             player.css("background-image", "url('img/get-bomb.png')");
-            $(".bomb").hide();
+            $(".bomb").removeClass("display-block");
             treasure1.hide();
             treasure2.hide();
           }, 100);
         }, 2000);
       };
+
+      $("#restartButton").click(function () {
+        // 重置
+        resetGame();
+      });
+
+      //  重制遊戲函式
+      function resetGame() {
+        player.css({
+          top: "0px",
+          left: "350px",
+          backgroundImage: "url('img/player08.png')",
+        });
+
+        treasure1.css("background-position", "0px 0px");
+        treasure2.css("background-position", "0px 0px");
+
+        treasure1.show();
+        treasure2.show();
+
+        $(".cheese").removeClass("moveUp display-block");
+        $(".bomb").removeClass("moveUp display-block");
+
+        isTreasureOpen = false;
+        step = 0;
+        orianta = 0;
+      }
     </script>
   </body>
 </html>
