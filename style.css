@@ -1,9 +1,14 @@
+h3{
+  text-align: center;
+  margin: 50px;
+}
 .container {
   position: relative;
   width: 800px;
   height: 600px;
   background-color: #f0f8ff;
   overflow: hidden;
+  margin-top: 100px;
 }
 .player {
   position: absolute;
@@ -12,6 +17,7 @@
   width: 85px;
   height: 128px;
   overflow: hidden;
+  left: 350px;
 }
 .treasure1 {
   position: absolute;
@@ -22,6 +28,7 @@
   overflow: hidden;
   top: 400px;
   left: 200px;
+  z-index: 2;
 }
 .treasure2 {
   position: absolute;
@@ -32,4 +39,49 @@
   overflow: hidden;
   top: 400px;
   left: 500px;
+
+}
+.cheese{
+  position: absolute;
+  background-image: url("img/cheese-01.png");
+  background-position: 0px 0px;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  top: 430px;
+  left: 220px;
+  background-size: contain;
+  z-index: 2;
+  display: none;
+}
+.bomb{
+  position: absolute;
+  background-image: url("img/bomb-01.png");
+  background-position: 0px 0px;
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  top: 440px;
+  left: 520px;
+  background-size: contain;
+  z-index: 2;
+  display: none;
+}
+.moveUp{
+  animation-name: MoveUp; 
+  animation-duration: 1s; 
+  animation-fill-mode: forwards; 
+}
+.display-block{
+  display: block;
+}
+
+@keyframes MoveUp {
+
+  from {
+    top: 430px;
+  }
+  to {
+    top: 380px;
+  }
 }
